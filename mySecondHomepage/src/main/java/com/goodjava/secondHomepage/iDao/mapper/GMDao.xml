@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.goodjava.secondHomepage.iDao.iGMDao">
+
+	<insert id="insertMember" parameterType="java.util.HashMap">
+		INSERT INTO GOODMEMBER(GMID, GMPW, GMNAME, GMADRESS, GMPHONE, GMPHONE2, GMPHONE3, SIGNUPDATE) VALUES (#{GMId},#{GMPw},#{GMName},#{GMAdress},#{GMPhone},#{GMPhone2},#{GMPhone3}, SYSDATE)	
+	</insert>
+	
+	<select id="selectOneGM" parameterType="String" resultType="java.util.HashMap">
+		SELECT * FROM GOODMEMBER WHERE GMID=#{GMId}
+	</select>
+	
+	<select id="allGMMember" resultType="java.util.HashMap">
+		SELECT * FROM GOODMEMBER ORDER BY GMID ASC
+	</select>
+
+	<update id="updateMember" parameterType="java.util.HashMap">
+		UPDATE GOODMEMBER SET GMNAME=#{GMName}, GMADRESS=#{GMAdress}, GMPHONE=#{GMPhone}, GMPHONE2=#{GMPhone2}, GMPHONE3=#{GMPhone3} WHERE GMID=#{GMId}
+	</update>
+	
+	<update id="updateMemberPw" parameterType="String">
+		UPDATE GOODMEMBER SET GMPW=#{param1} WHERE GMID=#{param2}
+	</update>
+	
+	<delete id="deleteGM" parameterType="java.util.HashMap">
+		DELETE FROM GOODMEMBER WHERE GMID=#{GMID} AND GMPW=#{GMPW}
+	</delete>
+</mapper>

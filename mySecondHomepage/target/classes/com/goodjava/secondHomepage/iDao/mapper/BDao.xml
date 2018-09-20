@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.goodjava.secondHomepage.iDao.iBDao">
+	
+	<select id="AllList" parameterType="int" resultType="java.util.HashMap">
+		<!-- SELECT * FROM (SELECT ROWNUM AS RNUM, T1.* FROM (SELECT * FROM MULTIPURPOSEBOARD ORDER BY BID DESC) T1 WHERE ROWNUM <![CDATA[<]]>= #{param2}) WHERE RNUM <![CDATA[>]]>= #{param1} -->
+		SELECT * FROM (SELECT p.*, ROW_NUMBER() OVER(ORDER BY BID DESC) AS RNUM FROM MULTIPURPOSEBOARD p) WHERE RNUM BETWEEN #{param1}-#{param2} AND #{param1}
+	</select>
+	
+	<select id="selectOne" parameterType="String" resultType="java.util.HashMap">
+		SELECT * FROM MULTIPURPOSEBOARD WHERE BID=#{bId}
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM MULTIPURPOSEBOARD WHERE BID=#{bId}
+	</delete>
+
+	<insert id="insert" parameterType="java.util.HashMap">
+		INSERT INTO MULTIPURPOSEBOARD(bId, bTitle, bContent, bName, bHit, bGroup, bStep, bIndent, bDate) VALUES(boardsequence.nextval, #{bTitle}, #{bContent}, #{bName}, 0, boardsequence.currval, 0, 0, SYSDATE )
+	</insert>
+	
+	<update id="modify" parameterType="java.util.HashMap">
+		UPDATE MULTIPURPOSEBOARD SET BTITLE=#{bTitle}, BCONTENT=#{bContent} WHERE BID=#{bId}
+	</update>
+	
+	<insert id="reply" parameterType="java.util.HashMap">
+		INSERT INTO MULTIPURPOSEBOARD(bId, bTitle, bContent, bName, bHit, bGroup, bStep, bIndent, bDate) VALUES(boardsequence.nextval, #{bTitle}, #{bContent}, #{GMId}, 0, #{bGroup}, #{bStep}+1, #{bIndent}+1, SYSDATE )
+	</insert>
+	
+	<update id="uphit" parameterType="java.util.HashMap">
+		UPDATE MULTIPURPOSEBOARD SET BHIT=BHIT+1 WHERE BID=#{bId}
+	</update>
+	
+	<update id="replyShape" parameterType="java.util.HashMap">
+		UPDATE MULTIPURPOSEBOARD SET BSTEP=BSTEP+1 WHERE BGROUP=#{bGroup} AND BSTEP>#{bStep}
+	</update>
+	
+	
+	
+	
+	<insert id="insertComment" parameterType="java.util.HashMap">
+		INSERT INTO COMMENTBOARD(COMMENTID, COMMENTNAME, COMMENTCONTENT, COMMENTDATE) VALUES (#{commentId}, #{commentName}, #{commentContent}, SYSDATE )
+	</insert>
+
+	<select id="commentList" parameterType="String" resultType="java.util.HashMap">
+		SELECT * FROM COMMENTBOARD WHERE COMMENTID=#{commentId} ORDER BY COMMENTDATE DESC
+	</select>
+	
+	<delete id="commentDel" parameterType="java.util.HashMap">
+		DELETE FROM COMMENTBOARD WHERE COMMENTNAME=#{commentName} AND COMMENTCONTENT=#{commentContent}
+	</delete>
+	
+	<delete id="commentAllDel" parameterType="String">
+		DELETE FROM COMMENTBOARD WHERE COMMENTID=#{commentId}
+	</delete>
+	
+	
+	
+	
+	<select id="adminAllList" resultType="java.util.HashMap">
+		SELECT * FROM ADMINBOARD ORDER BY ADMINID DESC
+	</select>
+
+	<select id="adminselectOne" parameterType="String" resultType="java.util.HashMap">
+		SELECT * FROM ADMINBOARD WHERE ADMINID=#{adminId}
+	</select>
+	
+	<delete id="admindelete" parameterType="String">
+		DELETE FROM ADMINBOARD WHERE ADMINID=#{adminId}
+	</delete>
+	
+	<insert id="admininsert" parameterType="java.util.HashMap">
+		INSERT INTO ADMINBOARD(adminId, adminTitle, adminContent, adminName, adminHit, adminDate) VALUES(adminboard_seq.nextval, #{adminTitle}, #{adminContent}, #{adminName}, 0, SYSDATE )
+	</insert>
+	
+	<update id="adminmodify" parameterType="java.util.HashMap">
+		UPDATE ADMINBOARD SET ADMINTITLE=#{adminTitle}, ADMINCONTENT=#{adminContent} WHERE ADMINID=#{adminId}
+	</update>
+	
+	<update id="adminupHit" parameterType="String">
+		UPDATE ADMINBOARD SET ADMINHIT=ADMINHIT+1 WHERE ADMINID=#{adminId}
+	</update>
+	
+	
+<!-- 	<select id="paginglist" resultType="com.goodjava.secondHomepage.Dto.BDto">
+		SELECT * FROM MULTIPURPOSEBOARD ORDER BY BID DESC LIMIT #{pagenum},#{contentnum}
+	</select>
+ -->
+	<select id="pagingcount" resultType="int">
+		SELECT COUNT(*) FROM MULTIPURPOSEBOARD
+	</select>
+</mapper>
