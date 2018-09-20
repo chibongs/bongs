@@ -2,9 +2,7 @@
 
 들어간 기술로는
 
-프레임 워크 : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0***
-
-사용된 언어 : ***java***, ***jsp***, ***css***, ***javascript***
+프레임 워크 : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0*** 사용된 언어 : ***java***, ***jsp***, ***css***, ***javascript***
 
 가 있습니다.
 
