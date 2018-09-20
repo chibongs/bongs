@@ -1,12 +1,14 @@
-°³ÀÎ È¨ÆäÀÌÁö¸¦ °³¹ßÇÏ¿´½À´Ï´Ù.
-µé¾î°£ ±â¼ú·Î´Â
-ÇÁ·¹ÀÓ ¿öÅ© : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0***
-»ç¿ëµÈ ¾ğ¾î : ***java***, ***jsp***, ***css***, ***javascript***
-°¡ ÀÖ½À´Ï´Ù.
-DB´Â mybatis¸¦ ÀÌ¿ëÇÏ¿© ¿ëÀÌÇÏ°Ô Á¢±ÙÇÏµµ·Ï ÇÏ¿´½À´Ï´Ù.
+ê°œì¸ í™ˆí˜ì´ì§€ë¥¼ ê°œë°œí•˜ì˜€ìŠµë‹ˆë‹¤.
+ë“¤ì–´ê°„ ê¸°ìˆ ë¡œëŠ”
+í”„ë ˆì„ ì›Œí¬ : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0***
+ì‚¬ìš©ëœ ì–¸ì–´ : ***java***, ***jsp***, ***css***, ***javascript***
+ê°€ ìˆìŠµë‹ˆë‹¤.
+DBëŠ” mybatisë¥¼ ì´ìš©í•˜ì—¬ ìš©ì´í•˜ê²Œ ì ‘ê·¼í•˜ë„ë¡ í•˜ì˜€ìŠµë‹ˆë‹¤.
 
-##ÁÖ¿ä ±â´É
->·Î±×ÀÎ ½Ã ÀÏ¹İ»ç¿ëÀÚ¿Í °ü¸®ÀÚÀÇ **±¸º°** (controller)
+##ì£¼ìš” ê¸°ëŠ¥
+>ë¡œê·¸ì¸ ì‹œ ì¼ë°˜ì‚¬ìš©ìì™€ ê´€ë¦¬ìì˜ **êµ¬ë³„** 
+(controller)
+
 '''java
 if(GMService.searchGMId((String)params.get("GMId"),(String)params.get("GMPw"))&&!((String)params.get("GMId")).equals("admin")) {
 	session.setAttribute("GMId", (String)params.get("GMId"));
@@ -22,7 +24,7 @@ if(GMService.searchGMId((String)params.get("GMId"),(String)params.get("GMPw"))&&
 }
 '''
 
->·Î±×ÀÎ ½Ã sessionÀ» ÀÌ¿ëÇÏ¿© µ¥ÀÌÅÍ°¡ Á¦´ë·Î µé¾î°¬³ª È®ÀÎ ÈÄ ¸Ş¼¼Áö Ç¥½Ã
+>ë¡œê·¸ì¸ ì‹œ sessionì„ ì´ìš©í•˜ì—¬ ë°ì´í„°ê°€ ì œëŒ€ë¡œ ë“¤ì–´ê°”ë‚˜ í™•ì¸ í›„ ë©”ì„¸ì§€ í‘œì‹œ
 (controller)
 '''java
 if(session.getAttribute("error")==null) {
@@ -38,19 +40,20 @@ if(session.getAttribute("error")==null) {
 (view)
 '''html
 <c:if test="${error=='error'}">
-	<div class="form-group has-feedback" style="color: red">¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.</div>
+	<div class="form-group has-feedback" style="color: red">ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</div>
 </c:if>
 <c:if test="${error=='logout'}">
-	<div class="form-group has-feedback" style="color: red">·Î±×¾Æ¿ô µÇ¼Ì½À´Ï´Ù.</div>
+	<div class="form-group has-feedback" style="color: red">ë¡œê·¸ì•„ì›ƒ ë˜ì…¨ìŠµë‹ˆë‹¤.</div>
 </c:if>
 '''
 
->°Ô½ÃÆÇ **´ñ±Û** ±¸Çö
+>ê²Œì‹œíŒ **ëŒ“ê¸€** êµ¬í˜„
 (controller)
-°Ô½ÃÆÇ dataÀÇ °Ô½ÃÆÇ ¹øÈ£¸¦ ´ñ±Û dataÀÇ ´ñ±Û ¹øÈ£¿¡ ÀúÀåÀ» ÇØ¼­ °°Àº ³»¿ë ³»¿¡  ºÒ·¯¿Ã ¼ö ÀÖ°Ô ÇÏ¿´´Ù. 
+ê²Œì‹œíŒ dataì˜ ê²Œì‹œíŒ ë²ˆí˜¸ë¥¼ ëŒ“ê¸€ dataì˜ ëŒ“ê¸€ ë²ˆí˜¸ì— ì €ì¥ì„ í•´ì„œ ê°™ì€ ë‚´ìš© ë‚´ì—  ë¶ˆëŸ¬ì˜¬ ìˆ˜ ìˆê²Œ í•˜ì˜€ë‹¤. 
+
 '''java
-String commentId = (String)params.get("commentId"); //°Ô½ÃÆÇ ¹øÈ£
-String commentName = (String)params.get("commentName"); //´ñ±ÛÀ» ÀÛ¼ºÇÑ Id
+String commentId = (String)params.get("commentId"); //ê²Œì‹œíŒ ë²ˆí˜¸
+String commentName = (String)params.get("commentName"); //ëŒ“ê¸€ì„ ì‘ì„±í•œ Id
 bService.insertComment(params);
 	
 HashMap<String, Object> contentparams=bService.selectOne(commentId);
@@ -58,13 +61,13 @@ mav.addObject("bDto", contentparams);
 mav.addObject("commentboard", bService.commentList(commentId));
 session.setAttribute("member", GMService.getGMMember(commentName));
 System.out.println("BNAME="+((String)contentparams.get("BNAME"))+", GMId="+commentName);
-if(((String)contentparams.get("BNAME")).equals(commentName)) {//ÀÛ¼ºÀÚ¿Í Á¢¼ÓÀÚ Id°¡ µ¿ÀÏÇÑÁö È®ÀÎ
+if(((String)contentparams.get("BNAME")).equals(commentName)) {//ì‘ì„±ìì™€ ì ‘ì†ì Idê°€ ë™ì¼í•œì§€ í™•ì¸
 	mav.setViewName("board/contentView");
 } else {
 	mav.setViewName("board/otherUsersContentView");
 }
 '''
-(view_´ñ±Û È­¸é)
+(view_ëŒ“ê¸€ í™”ë©´)
 '''html
 <c:forEach items="${commentboard}" var="comment">
 	<div class="box-footer box-comments container" style="width:50%">
@@ -93,35 +96,38 @@ if(((String)contentparams.get("BNAME")).equals(commentName)) {//ÀÛ¼ºÀÚ¿Í Á¢¼ÓÀÚ 
 	</div>
 </c:forEach>
 '''
-(view_´ñ±Û ÀÛ¼º)
+(view_ëŒ“ê¸€ ì‘ì„±)
+
 '''html
 <form action="comment.do" method="post">
 	<input type="hidden" name="commentId" value="${bDto.BID}">
 	<input type="hidden" name="commentName" value="${member.get('GMID')}">
 	<div class="img-push">
-		<input type="text" name="commentContent" class="form-control input-sm" placeholder="´ñ±ÛÀ» ÀÔ·ÂÇÏ½Å ÈÄ ¿£ÅÍÅ°¸¦ ´­·¯ ÁÖ¼¼¿ä.">
+		<input type="text" name="commentContent" class="form-control input-sm" placeholder="ëŒ“ê¸€ì„ ì…ë ¥í•˜ì‹  í›„ ì—”í„°í‚¤ë¥¼ ëˆŒëŸ¬ ì£¼ì„¸ìš”.">
 	</div>
 </form>
 '''
 
->°Ô½ÃÆÇ **´ä±Û** ±¸Çö
-´ä±ÛÀ» ±¸ÇöÇÏ±â À§ÇØ º»¹®°ú ´ä±ÛÀ» ¹­¾îÁÖ´Â µ¥ÀÌÅÍ¿Í ´ä±ÛÀÇ ±íÀÌ¸¦ ³ªÅ¸³»ÁÖ´Â µ¥ÀÌÅÍ¿Í ¸®½ºÆ®¿¡¼­ ´ä±ÛÀ» Ç¥½ÃÇØÁÖ´Â µ¥ÀÌÅÍ¸¦ °Ô½ÃÆÇDB¸¦ »ı¼ºÇÒ ¶§ °°ÀÌ »ı¼ºÇÏ¿´½À´Ï´Ù.
-(mybatis_mapper)_´ä±ÛÀúÀå
+>ê²Œì‹œíŒ **ë‹µê¸€** êµ¬í˜„
+ë‹µê¸€ì„ êµ¬í˜„í•˜ê¸° ìœ„í•´ ë³¸ë¬¸ê³¼ ë‹µê¸€ì„ ë¬¶ì–´ì£¼ëŠ” ë°ì´í„°ì™€ ë‹µê¸€ì˜ ê¹Šì´ë¥¼ ë‚˜íƒ€ë‚´ì£¼ëŠ” ë°ì´í„°ì™€ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë‹µê¸€ì„ í‘œì‹œí•´ì£¼ëŠ” ë°ì´í„°ë¥¼ ê²Œì‹œíŒDBë¥¼ ìƒì„±í•  ë•Œ ê°™ì´ ìƒì„±í•˜ì˜€ìŠµë‹ˆë‹¤.
+(mybatis_mapper)_ë‹µê¸€ì €ì¥
+
 '''xml
 <insert id="reply" parameterType="java.util.HashMap">
 	INSERT INTO MULTIPURPOSEBOARD(bId, bTitle, bContent, bName, bHit, bGroup, bStep, bIndent, bDate) VALUES(boardsequence.nextval, #{bTitle}, #{bContent}, #{GMId}, 0, #{bGroup}, #{bStep}+1, #{bIndent}+1, SYSDATE )
 </insert>
 '''
-°Ô½ÃÆÇ ¸ñ·Ï¿¡´Â °è¼ÓÇØ¼­ ¹øÈ£¸¦ ´Ã¸®±â À§ÇØ¼­ ½ÃÄõ½º¸¦ °è¼Ó ÀÌ¿ëÇÏ¿´°í º»¹®°ú ¹­¿©Áö´Â µ¥ÀÌÅÍ´Â ±×´ë·Î °¡Á®´Ù ¾²°í ´ä±ÛÀÇ ±íÀÌ¿Í °Ô½ÃÆÇ ÀÌ¸§¿¡ ´ñ±ÛÀ» Ç¥½ÃÇØÁÖ´Â µ¥ÀÌÅÍ´Â 1¾¿ Ãß°¡ÇÏ¿´½À´Ï´Ù.
 
-(mybatis_mapper)_´ä±ÛÀÇ ±íÀÌ È®ÀÎ
+ê²Œì‹œíŒ ëª©ë¡ì—ëŠ” ê³„ì†í•´ì„œ ë²ˆí˜¸ë¥¼ ëŠ˜ë¦¬ê¸° ìœ„í•´ì„œ ì‹œì¿¼ìŠ¤ë¥¼ ê³„ì† ì´ìš©í•˜ì˜€ê³  ë³¸ë¬¸ê³¼ ë¬¶ì—¬ì§€ëŠ” ë°ì´í„°ëŠ” ê·¸ëŒ€ë¡œ ê°€ì ¸ë‹¤ ì“°ê³  ë‹µê¸€ì˜ ê¹Šì´ì™€ ê²Œì‹œíŒ ì´ë¦„ì— ëŒ“ê¸€ì„ í‘œì‹œí•´ì£¼ëŠ” ë°ì´í„°ëŠ” 1ì”© ì¶”ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.
+
+(mybatis_mapper)_ë‹µê¸€ì˜ ê¹Šì´ í™•ì¸
 '''xml
 <update id="replyShape" parameterType="java.util.HashMap">
 	UPDATE MULTIPURPOSEBOARD SET BSTEP=BSTEP+1 WHERE BGROUP=#{bGroup} AND BSTEP>#{bStep}
 </update>
 '''
-º»¹®°ú °°ÀÌ ¹¬¿©ÀÖ´Â ´ä±ÛÀÌ°í ´ä±ÛÀÇ ±íÀÌ¸¦ È®ÀÎÇÑ ÈÄ ´ä±ÛÀÓÀÌ È®ÀÎ µÇ¸é ±íÀÌ¸¦ 1´õÇØÁØ´Ù.
+ë³¸ë¬¸ê³¼ ê°™ì´ ë¬µì—¬ìˆëŠ” ë‹µê¸€ì´ê³  ë‹µê¸€ì˜ ê¹Šì´ë¥¼ í™•ì¸í•œ í›„ ë‹µê¸€ì„ì´ í™•ì¸ ë˜ë©´ ê¹Šì´ë¥¼ 1ë”í•´ì¤€ë‹¤.
 
->°Ô½ÃÆÇ **ÆäÀÌÁö³×ÀÌ¼Ç** ±¸Çö
->°ü¸®ÀÚ¸¸ µé¾î°¥ ¼ö ÀÖ´Â °øÁö»çÇ× ±¸Çö
->°ü¸®ÀÚ¸¸ È®ÀÎÇÏ´Â È¸¿øÁ¤º¸ ±¸Çö
+>ê²Œì‹œíŒ **í˜ì´ì§€ë„¤ì´ì…˜** êµ¬í˜„
+>ê´€ë¦¬ìë§Œ ë“¤ì–´ê°ˆ ìˆ˜ ìˆëŠ” ê³µì§€ì‚¬í•­ êµ¬í˜„
+>ê´€ë¦¬ìë§Œ í™•ì¸í•˜ëŠ” íšŒì›ì •ë³´ êµ¬í˜„
