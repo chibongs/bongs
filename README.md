@@ -1,10 +1,10 @@
 개인 홈페이지를 개발하였습니다.
 
-들어간 기술로는
+사용한 기술들은
 
-프레임 워크 : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0*** 사용된 언어 : ***java***, ***jsp***, ***css***, ***javascript***
+OS : ***windows10*** 프레임 워크 : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0*** 사용된 언어 : ***java***, ***jsp***, ***css***, ***javascript***
 
-가 있습니다.
+이 있습니다.
 
 DB는 mybatis를 이용하여 용이하게 접근하도록 하였습니다.
 
