@@ -118,13 +118,16 @@ if(((String)contentparams.get("BNAME")).equals(commentName)) {//작성자와 접
 
 답글을 구현하기 위해 본문과 답글을 묶어주는 데이터와 답글의 깊이를 나타내주는 데이터와 리스트에서 답글을 표시해주는 데이터를 게시판DB를 생성할 때 같이 생성하였습니다.
 
+게시판 목록에는 계속해서 번호를 늘리기 위해서 시쿼스를 계속 이용하였고 본문과 묶여지는 데이터는 그대로 가져다 쓰고 답글의 깊이와 게시판 이름에 댓글을 표시해주는 데이터는 1씩 추가하였습니다.
+
 (mybatis_mapper)_답글저장
 ~~~
 <insert id="reply" parameterType="java.util.HashMap">
 	INSERT INTO MULTIPURPOSEBOARD(bId, bTitle, bContent, bName, bHit, bGroup, bStep, bIndent, bDate) VALUES(boardsequence.nextval, #{bTitle}, #{bContent}, #{GMId}, 0, #{bGroup}, #{bStep}+1, #{bIndent}+1, SYSDATE )
 </insert>
 ~~~
-게시판 목록에는 계속해서 번호를 늘리기 위해서 시쿼스를 계속 이용하였고 본문과 묶여지는 데이터는 그대로 가져다 쓰고 답글의 깊이와 게시판 이름에 댓글을 표시해주는 데이터는 1씩 추가하였습니다.
+
+본문과 같이 묵여있는 답글이고 답글의 깊이를 확인한 후 답글임이 확인 되면 깊이를 1을 더해주어 한단계 깊게 들어가도록 . 
 
 (mybatis_mapper)_답글의 깊이 확인
 ~~~
@@ -132,10 +135,11 @@ if(((String)contentparams.get("BNAME")).equals(commentName)) {//작성자와 접
 	UPDATE MULTIPURPOSEBOARD SET BSTEP=BSTEP+1 WHERE BGROUP=#{bGroup} AND BSTEP>#{bStep}
 </update>
 ~~~
-본문과 같이 묵여있는 답글이고 답글의 깊이를 확인한 후 답글임이 확인 되면 깊이를 1더해준다.
 
 >게시판 **페이지네이션** 구현
 
 >관리자만 들어갈 수 있는 공지사항 구현
 
 >관리자만 확인하는 회원정보 구현
+
+>홈페이지를 돌아다닐때 해당 아이디 정보를 지속적으로 관리를 해주어 아이디 정보에 맞는 서비스만 제공
