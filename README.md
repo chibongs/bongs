@@ -95,7 +95,7 @@ if(((String)contentparams.get("BNAME")).equals(commentName)) {//작성자와 접
 								<input type="hidden" name="commentName" value="${comment.COMMENTNAME}">
 								<input type="hidden" name="commentContent" value="${comment.COMMENTCONTENT}">
 								<input type="hidden" name="commentDate" value="${comment.COMMENTDATE}">
-								<input type="submit" class="btn btn-link btn-sm" value="X">												</form>
+								<input type="submit" class="btn btn-link btn-sm" value="X">
 							</form>
 						</c:if>
 					</span>	
