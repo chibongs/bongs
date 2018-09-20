@@ -2,7 +2,7 @@
 
 사용한 기술들은
 
-OS : ***windows10*** 프레임 워크 : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0*** 사용된 언어 : ***java***, ***jsp***, ***css***, ***javascript***
+OS : ***windows10***, 프레임 워크 : ***springframework***, DB : ***oracle***, server : ***Tomcat v9.0***, 사용된 언어 : ***java***, ***jsp***, ***css***, ***javascript***
 
 이 있습니다.
 
