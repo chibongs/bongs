@@ -6,7 +6,9 @@
 DB는 mybatis를 이용하여 용이하게 접근하도록 하였습니다.
 
 ##주요 기능
+
 >로그인 시 일반사용자와 관리자의 **구별** 
+
 (controller)
 
 '''java:
@@ -25,7 +27,9 @@ if(GMService.searchGMId((String)params.get("GMId"),(String)params.get("GMPw"))&&
 '''
 
 >로그인 시 session을 이용하여 데이터가 제대로 들어갔나 확인 후 메세지 표시
+
 (controller)
+
 '''java:
 if(session.getAttribute("error")==null) {
 	session.setAttribute("error", "NoError");
@@ -48,7 +52,9 @@ if(session.getAttribute("error")==null) {
 '''
 
 >게시판 **댓글** 구현
+
 (controller)
+
 게시판 data의 게시판 번호를 댓글 data의 댓글 번호에 저장을 해서 같은 내용 내에  불러올 수 있게 하였다. 
 
 '''java:
@@ -68,6 +74,7 @@ if(((String)contentparams.get("BNAME")).equals(commentName)) {//작성자와 접
 }
 '''
 (view_댓글 화면)
+
 '''html:
 <c:forEach items="${commentboard}" var="comment">
 	<div class="box-footer box-comments container" style="width:50%">
@@ -109,7 +116,9 @@ if(((String)contentparams.get("BNAME")).equals(commentName)) {//작성자와 접
 '''
 
 >게시판 **답글** 구현
+
 답글을 구현하기 위해 본문과 답글을 묶어주는 데이터와 답글의 깊이를 나타내주는 데이터와 리스트에서 답글을 표시해주는 데이터를 게시판DB를 생성할 때 같이 생성하였습니다.
+
 (mybatis_mapper)_답글저장
 
 '''xml:
